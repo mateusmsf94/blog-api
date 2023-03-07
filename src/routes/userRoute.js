@@ -1,0 +1,21 @@
+const express = require('express');
+const { validateDisplayName } = require('../middleware/validateDisplayName');
+const { validateEmail } = require('../middleware/validateEmail');
+const { validatePassword } = require('../middleware/validatePassword');
+const {
+  checkUserExists,
+  createUserController,
+} = require('../controller/user.controller');
+
+const userRoute = express.Router();
+
+userRoute.post(
+  '/',
+  validateDisplayName,
+  validateEmail,
+  checkUserExists,
+  validatePassword,
+  createUserController,
+);
+
+module.exports = userRoute;
