@@ -1,4 +1,4 @@
-const { emailExists, createUser } = require('../services/user.service');
+const { emailExists, createUser, getAllUsers } = require('../services/user.service');
 const { createToken } = require('../auth/authFuncs');
 
 const checkUserExists = async (req, res, next) => {
@@ -22,4 +22,13 @@ const createUserController = async (req, res) => {
   }
 };
 
-module.exports = { checkUserExists, createUserController };
+const getAllUsersController = async (req, res) => {
+  try {
+    const users = await getAllUsers();
+    return res.status(200).json(users);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { checkUserExists, createUserController, getAllUsersController };

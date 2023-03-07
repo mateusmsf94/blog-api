@@ -2,9 +2,11 @@ const express = require('express');
 const { validateDisplayName } = require('../middleware/validateDisplayName');
 const { validateEmail } = require('../middleware/validateEmail');
 const { validatePassword } = require('../middleware/validatePassword');
+const { checkToken } = require('../middleware/checkToken');
 const {
   checkUserExists,
   createUserController,
+  getAllUsersController,
 } = require('../controller/user.controller');
 
 const userRoute = express.Router();
@@ -17,5 +19,7 @@ userRoute.post(
   validatePassword,
   createUserController,
 );
+
+userRoute.get('/', checkToken, getAllUsersController);
 
 module.exports = userRoute;
