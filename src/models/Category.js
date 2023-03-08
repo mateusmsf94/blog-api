@@ -14,7 +14,14 @@ module.exports = (sequelize, DataTypes) => {
   {
     timestamps: false,
     underscored: true,
-  }
-  );
+  });
+
+  Category.associate = (models) => {
+    Category.hasMany(models.BlogPost, {
+      foreignKey: "id",
+      as: "blogPosts",
+    });
+  };
+
   return Category;
 }
