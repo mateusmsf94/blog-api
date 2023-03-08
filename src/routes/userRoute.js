@@ -7,6 +7,7 @@ const {
   checkUserExists,
   createUserController,
   getAllUsersController,
+  getUserByIdController,
 } = require('../controller/user.controller');
 
 const userRoute = express.Router();
@@ -21,5 +22,6 @@ userRoute.post(
 );
 
 userRoute.get('/', checkToken, getAllUsersController);
+userRoute.get('/:id', checkToken, getUserByIdController);
 
 module.exports = userRoute;
