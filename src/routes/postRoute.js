@@ -5,6 +5,7 @@ const {
   checkPostCategory,
   createPostController,
   getAllPostController,
+  getPostByIdController,
 } = require('../controller/postController');
 
 const postRoute = expresss.Router();
@@ -17,5 +18,6 @@ postRoute.post(
   createPostController,
 );
 postRoute.get('/', checkToken, getAllPostController);
+postRoute.get('/:id', checkToken, getPostByIdController);
 
 module.exports = postRoute;
