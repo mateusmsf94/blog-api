@@ -12,4 +12,9 @@ const getAllCategories = async () => {
   return categories;
 };
 
-module.exports = { createCategory, getAllCategories };
+const findByIds = async (id) => {
+ const categoriesId = Category.findAll({ where: { id } });
+ return categoriesId;
+};
+
+module.exports = { createCategory, getAllCategories, findByIds };
